@@ -4,13 +4,11 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY) // API key should come from Netli
 exports.handler = function(event, context, callback) {
     const headers = {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-       'Content-Type': 'x-www-form-urlencoded',
+        'Content-Type': 'x-www-form-urlencoded',
         'Access-Control-Allow-Methods': 'POST,OPTIONS',
         'Access-Control-Max-Age': '2592000'
   }
-   if (event.httpMethod !== 'POST') {
-    // To enable CORS
+   if (event.httpMethod !== 'POST') {// To enable CORS
     callback(null,  {
       statusCode: 200, // <-- Important!
       headers,
@@ -19,7 +17,7 @@ exports.handler = function(event, context, callback) {
 } 
    if (event.httpMethod === 'POST') {
     
-     const{ name, email, message } = JSON.parse(event.body) // These are grabbed from the event in the handler above
+    const{ name, email, message } = JSON.parse(event.body) // These are grabbed from the event in the handler above
     const msg = {
         to: 'marc@dizid.com',
         from: 'sendformdata@netlifyfunctions.com',
@@ -27,7 +25,7 @@ exports.handler = function(event, context, callback) {
         text: message + "From: " + email,
         html: '<strong>' + message + '</strong><br>From: ' + email,
       }
-      sgMail.send(msg), 
+      sgMail.send(msg), // This is the main function of this function!
         callback(null, {
         statusCode: 200, 
         headers, 
