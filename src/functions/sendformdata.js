@@ -1,4 +1,4 @@
-// require('dotenv').config() // DEV ONLY
+// require('dotenv').config() // DEV ONLY  
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY) // API key should come from Netlify environment variables
 exports.handler = function(event, context, callback) {
