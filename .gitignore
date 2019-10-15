@@ -4,6 +4,7 @@ node_modules
 
 # personal files
 dev.txt
+*.txt
 
 # local env files
 .env
