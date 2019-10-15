@@ -8,20 +8,12 @@ exports.handler = function(event, context, callback) {
         'Access-Control-Allow-Methods': 'POST,OPTIONS',
         'Access-Control-Max-Age': '2592000'
   }
-   if (event.httpMethod !== 'POST') {// To enable CORS
-    callback(null,  {
-      statusCode: 200, // <-- Important!
-      headers,
-      body: 'This was not a POST request!'
-    })
-} 
    if (event.httpMethod === 'POST') {
-    
-    const{ name, email, message } = JSON.parse(event.body) // These are grabbed from the event in the handler above
+   const{ name, email, message } = JSON.parse(event.body) // These are grabbed from the event in the handler above
     const msg = {
         to: 'marc@dizid.com',
-        from: 'sendformdata@netlifyfunctions.com',
-        subject: 'New comment from: ' + name + ' on dizid.com',
+        from: 'sendformdata@example.com',
+        subject: 'New comment from: ' + name + ' on dizid.com/contact',
         text: message + "From: " + email,
         html: '<strong>' + message + '</strong><br>From: ' + email,
       }
@@ -29,7 +21,7 @@ exports.handler = function(event, context, callback) {
         callback(null, {
         statusCode: 200, 
         headers, 
-        body: JSON.stringify({ msg: "Thanks for your message " + name + " Email: " + email + " Msg: " + message}),
+        body: JSON.stringify({ body: "Formdata: Message: " + message + " API key: " + process.env.TESTKEY1 }),
     })
    } 
 }
