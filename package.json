@@ -5,7 +5,7 @@
   "main": "sendformdata.js",
   "scripts": {
     "start:lambda": "netlify-lambda serve src/functions",
-    "build:lambda": "netlify-lambda build src/functions"
+    "build:lambda": "netlify-lambda build src/functions && node -p 'process.env'"
   },
   "keywords": [
     "serverless function",
