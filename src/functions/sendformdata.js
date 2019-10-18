@@ -20,36 +20,33 @@ exports.handler = function(event, context, callback) {
       }
       sgMail
       .send(msg, (error, result) => {
-        if (error) {
-          const sendgriderror = JSON.stringify(error)
-          axios.post('https://www.jsonstore.io/3dfd871004bd5b6bbdec52533694cd78b8581b6d3612d7dd6396197ebffd2ade', {
-            sendgriderrors: sendgriderror
+        if (error) {console.error(error)
+        //  const sendgriderror = JSON.stringify(error)
+       /*    axios.post('https://www.jsonstore.io/3dfd871004bd5b6bbdec52533694cd78b8581b6d3612d7dd6396197ebffd2ade', {
+            sendgriderror: JSON.stringify(error)
           })
           .then((res) => {
             console.log(`statusCode: ${res.statusCode}`)
             console.log(res)
-          })
+          }) 
           .catch((error) => {
             console.error(error)
-          })
-
-
-         console.error(error.toString()) //Do something with the error
+          })*/
+       //  console.error(error.toString()) //Do something with the error
         }
         else {
          console.log("MF: sendgrid succeeded") //Celebrate
        //  console.log("MF: show result: ", result)
-         const sendgridresult = JSON.stringify(result)
-                 axios.post('https://www.jsonstore.io/3dfd871004bd5b6bbdec52533694cd78b8581b6d3612d7dd6396197ebffd2ade', {
-                  sendgridresults : sendgridresult
-         })
+       /*    axios.post('https://www.jsonstore.io/3dfd871004bd5b6bbdec52533694cd78b8581b6d3612d7dd6396197ebffd2ade', {
+          sendgridresult : JSON.stringify(result)
+         }) */
         }
       })
              
         callback(null, {
         statusCode: 200, 
         headers, 
-        body: JSON.stringify({ body: "Formdata: Message: " + message + " API key: " + process.env.TESTKEY1 }),
+        body: JSON.stringify({ body: "Formdata: Message: " + message }),
     })
    } 
 }
